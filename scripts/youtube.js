@@ -37,7 +37,7 @@ let activeOptions;
 let powerCondition;
 
 const style = document.createElement("style");
-style.setAttribute("id", "productive-web");
+style.setAttribute("id", "hukk");
 
 chrome.storage.sync.get(["youtube", "power"], (data) => {
   activeOptions = data.youtube || [];
