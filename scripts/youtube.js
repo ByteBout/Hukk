@@ -33,34 +33,34 @@ const targetElements = {
   "video-wall": [".ytp-fullscreen-grid-stills-container:has(.ytp-suggestion-set)"],
 };
 
-let activeOptions;
+let activeSettings;
 let powerCondition;
 
 const style = document.createElement("style");
 style.setAttribute("id", "hukk");
 
 chrome.storage.sync.get(["youtube", "power"], (data) => {
-  activeOptions = data.youtube || [];
+  activeSettings = data.youtube || [];
   powerCondition = data.power || "on";
 
   if (data.power === "off") return;
 
-  hideElements(activeOptions);
+  hideElements(activeSettings);
 });
 
 chrome.runtime.onMessage.addListener((request) => {
   if (request.power) powerCondition = request.power;
-  if (request.options) activeOptions = request.options;
+  if (request.settings) activeSettings = request.settings;
 
-  powerCondition === "on" ? hideElements(activeOptions) : hideElements([]);
+  powerCondition === "on" ? hideElements(activeSettings) : hideElements([]);
 });
 
-function hideElements(options) {
+function hideElements(settings) {
   let selectors = "";
 
   try {
-    for (let i = 0; i < options.length; i++) {
-      const x = options[i];
+    for (let i = 0; i < settings.length; i++) {
+      const x = settings[i];
       selectors += targetElements[x] + ", ";
     }
 
@@ -73,7 +73,7 @@ function hideElements(options) {
 
 const observer = new MutationObserver(() => {
   document.querySelector("head").appendChild(style);
-  hideElements(activeOptions);
+  hideElements(activeSettings);
 
   console.log("Mutation Observer Ran!!!");
 });

@@ -37,31 +37,31 @@ powerSwitchEl.addEventListener("change", () => {
   chrome.storage.sync.set({ power: condition });
 });
 
-function loadOptions(sld) {
-  // Load options condition from browser storage
-  chrome.storage.sync.get([sld], (options) => {
-    const activeOptions = options[sld] || [];
+function loadSettings(sld) {
+  // Load settings condition from browser storage
+  chrome.storage.sync.get([sld], (settings) => {
+    const activeSettings = settings[sld] || [];
 
-    activeOptions.forEach((option) => {
-      document.querySelector("#" + option).checked = true;
+    activeSettings.forEach((setting) => {
+      document.querySelector("#" + setting).checked = true;
     });
   });
 }
 
-function saveOption(option, sld) {
-  // Save options condition to browser storage
-  chrome.storage.sync.get([sld], (options) => {
-    let activeOptions = options[sld] || [];
+function saveSetting(setting, sld) {
+  // Save a setting condition to browser storage
+  chrome.storage.sync.get([sld], (settings) => {
+    let activeSettings = settings[sld] || [];
 
-    if (!activeOptions.includes(option)) {
-      activeOptions.push(option);
+    if (!activeSettings.includes(setting)) {
+      activeSettings.push(setting);
     } else {
-      let i = activeOptions.indexOf(option);
-      activeOptions.splice(i, 1);
+      let i = activeSettings.indexOf(setting);
+      activeSettings.splice(i, 1);
     }
 
-    chrome.tabs.sendMessage(tabId, { options: activeOptions, sld: sld });
-    chrome.storage.sync.set({ [sld]: activeOptions });
+    chrome.tabs.sendMessage(tabId, { settings: activeSettings, sld: sld });
+    chrome.storage.sync.set({ [sld]: activeSettings });
   });
 }
 
@@ -171,12 +171,12 @@ function loadYouTubeContent() {
       </fieldset>
   `;
 
-  const options = document.querySelectorAll(".toggle");
-  options.forEach((option) => {
-    option.addEventListener("change", (e) => saveOption(e.target.id, "youtube"));
+  const settings = document.querySelectorAll(".toggle");
+  settings.forEach((setting) => {
+    setting.addEventListener("change", (e) => saveSetting(e.target.id, "youtube"));
   });
 
-  loadOptions("youtube");
+  loadSettings("youtube");
 }
 
 function loadXContent() {
@@ -238,10 +238,10 @@ function loadXContent() {
       </fieldset>
   `;
 
-  const options = document.querySelectorAll(".toggle");
-  options.forEach((option) => {
-    option.addEventListener("change", (e) => saveOption(e.target.id, "x"));
+  const settings = document.querySelectorAll(".toggle");
+  settings.forEach((setting) => {
+    setting.addEventListener("change", (e) => saveSetting(e.target.id, "x"));
   });
 
-  loadOptions("x");
+  loadSettings("x");
 }
