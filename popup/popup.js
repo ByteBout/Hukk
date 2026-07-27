@@ -18,7 +18,7 @@ chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
   const hostnameParts = hostname.split(".");
   sld = hostnameParts.length == 2 ? hostnameParts[0] : hostnameParts[1];
 
-  sld in supportedWebsites ? supportedWebsites[sld]() : displayAlert();
+  sld in supportedWebsites ? supportedWebsites[sld]() : displayWarning();
 });
 
 // Load power switch condition from browser storage
@@ -65,8 +65,8 @@ function saveSetting(setting, sld) {
   });
 }
 
-function displayAlert() {
-  // Display an alert for unsupported websites and a list of supported websites
+function displayWarning() {
+  // Display a warning for unsupported websites
   pageContentEl.innerHTML = `
     <div role="alert" class="alert h-fit w-full shadow-xl select-none">
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-info h-6 w-6 shrink-0">
