@@ -17,7 +17,7 @@ const targetElements = {
     "#shorts-container",
   ],
   feed: ["ytd-two-column-browse-results-renderer[page-subtype='home']"],
-  notifocations: [".ytd-notification-topbar-button-renderer"],
+  notifications: [".ytd-notification-topbar-button-renderer"],
   subscriptions: ["#sections > ytd-guide-section-renderer:nth-last-child(5)", "a[href='/feed/subscriptions']"],
   explore: ["#sections > ytd-guide-section-renderer:nth-last-child(3)"],
   "more-from-youtube": ["#sections > ytd-guide-section-renderer:nth-last-child(2)"],

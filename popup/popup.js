@@ -117,7 +117,7 @@ function loadYouTubeContent() {
           Hide Feed
         </label>
         <label class="label mb-1.5 flex-row-reverse justify-between">
-          <input type="checkbox" id="notifocations" class="toggle toggle-sm toggle-primary" />
+          <input type="checkbox" id="notifications" class="toggle toggle-sm toggle-primary" />
           Hide Notifications
         </label>
       </fieldset>
