@@ -1,4 +1,4 @@
-const powerSwitchEl = document.querySelector("#power-switch");
+const settingSwitchEl = document.querySelector("#setting-switch");
 const pageContentEl = document.querySelector("#page-content");
 
 let sld;
@@ -25,13 +25,13 @@ chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
 chrome.storage.sync.get(["power"], (condition) => {
   const c = condition.power || "on";
 
-  if (c === "off") powerSwitchEl.checked = false;
+  if (c === "off") settingSwitchEl.checked = false;
 });
 
 // Save power switch condition to browser storage
-powerSwitchEl.addEventListener("change", () => {
+settingSwitchEl.addEventListener("change", () => {
   let condition;
-  powerSwitchEl.checked ? (condition = "on") : (condition = "off");
+  settingSwitchEl.checked ? (condition = "on") : (condition = "off");
 
   chrome.tabs.sendMessage(tabId, { power: condition, sld: sld });
   chrome.storage.sync.set({ power: condition });
