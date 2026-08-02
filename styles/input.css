@@ -1,92 +1,93 @@
 @import "tailwindcss";
-@plugin "daisyui" {
-  themes:
-    light --default,
-    dark --prefersdark;
-}
-@plugin "daisyui/theme" {
-  name: "dark";
-  default: true;
-  prefersdark: true;
-  color-scheme: "dark";
-  --color-base-100: #121212;
-  --color-base-200: #1e1e1e;
-  --color-base-300: #2a2a2a;
-  --color-base-content: #f5f5f5;
-  --color-primary: #f2af29;
-  --color-primary-content: #f5f5f5;
-  --color-secondary: #1f2937;
-  --color-secondary-content: #f5f5f5;
-  --color-accent: #00b3a4;
-  --color-accent-content: #f5f5f5;
-  --color-neutral: #6b7280;
-  --color-neutral-content: #f5f5f5;
-  --color-info: #2f7dd1;
-  --color-info-content: oklch(89.04% 0.062 264.052);
-  --color-success: #2e9e6f;
-  --color-success-content: oklch(90.395% 0.035 142.495);
-  --color-warning: #d97706;
-  --color-warning-content: oklch(19.359% 0.042 109.769);
-  --color-error: #d64545;
-  --color-error-content: oklch(12.559% 0.051 29.233);
-  --radius-selector: 1rem;
-  --radius-field: 1rem;
-  --radius-box: 1rem;
-  --size-selector: 0.25rem;
-  --size-field: 0.25rem;
-  --border: 1px;
-  --depth: 0;
-  --noise: 0;
-}
-@plugin "daisyui/theme" {
-  name: "light";
-  default: true;
-  prefersdark: false;
-  color-scheme: "light";
-  --color-base-100: #f5f5f5;
-  --color-base-200: #eaeaec;
-  --color-base-300: #d4d4d8;
-  --color-base-content: #121212;
-  --color-primary: #f2af29;
-  --color-primary-content: #121212;
-  --color-secondary: #1f2937;
-  --color-secondary-content: #121212;
-  --color-accent: #00b3a4;
-  --color-accent-content: #121212;
-  --color-neutral: #6b7280;
-  --color-neutral-content: #121212;
-  --color-info: #2f7dd1;
-  --color-info-content: oklch(89.04% 0.062 264.052);
-  --color-success: #2e9e6f;
-  --color-success-content: oklch(90.395% 0.035 142.495);
-  --color-warning: #d97706;
-  --color-warning-content: oklch(19.359% 0.042 109.769);
-  --color-error: #d64545;
-  --color-error-content: oklch(12.559% 0.051 29.233);
-  --radius-selector: 1rem;
-  --radius-field: 1rem;
-  --radius-box: 1rem;
-  --size-selector: 0.25rem;
-  --size-field: 0.25rem;
-  --border: 1px;
-  --depth: 0;
-  --noise: 0;
-}
 
 @font-face {
-  font-family: "AlanSans";
-  src: url("/public/fonts/AlanSans.ttf") format("truetype");
+  font-family: "IBMPlexMono";
+  src: url("/public/fonts/IBMPlexMono.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
 }
 
-@theme {
-  --font-alansans: "AlanSans", sans-serif;
+@font-face {
+  font-family: "IBMPlexMono-SemiBold";
+  src: url("/public/fonts/IBMPlexMono-SemiBold.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
 }
 
-@layer base {
-  body * {
-    @apply font-alansans;
+@font-face {
+  font-family: "IBMPlexMono-Bold";
+  src: url("/public/fonts/IBMPlexMono-Bold.ttf") format("truetype");
+  font-weight: bolder;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "SpaceGrotesk";
+  src: url("/public/fonts/SpaceGrotesk-VariableFont.ttf") format("truetype");
+  font-weight: 300 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  --font-ibm: "IBMPlexMono", sans-serif;
+  --font-ibm-bold: "IBMPlexMono-Bold", sans-serif;
+  --font-ibm-semibold: "IBMPlexMono-SemiBold", sans-serif;
+  --font-space: "SpaceGrotesk", sans-serif;
+}
+
+@layer components {
+  .toggle {
+    @apply relative ml-1 box-border h-5.5 w-9.5 rounded-md border-2 border-[#7D786A] bg-[#FAF8F2] peer-checked:border-[#1A1814] after:absolute after:top-0.5 after:left-[1.75px] after:h-3.5 after:w-3.5 after:rounded-[4.5px] after:bg-[#7D786A] after:transition-all peer-checked:after:left-4.5 peer-checked:after:bg-[#1A1814];
+  }
+
+  .toggle-primary {
+    @apply relative ml-1 box-border h-5.5 w-9.5 rounded-md border-2 border-[#7D786A] bg-[#FAF8F2] peer-checked:border-[#1A1814] peer-checked:bg-[#FFC107] after:absolute after:top-0.5 after:left-[1.75px] after:h-3.5 after:w-3.5 after:rounded-[4.5px] after:bg-[#7D786A] after:transition-all peer-checked:after:left-4.5 peer-checked:after:bg-[#1A1814];
+  }
+
+  .group {
+    @apply mt-1.5 flex h-7 w-full items-center justify-between gap-2 pb-2;
+  }
+
+  .group-title {
+    @apply font-ibm-semibold flex h-4.75 min-w-fit items-center justify-center rounded-[5px] bg-[#1A1814] px-1.75 pl-[8.25px] text-[10px] tracking-widest text-[#FAF8F2];
+  }
+
+  .group-line {
+    @apply h-0.5 w-full bg-[#1A1814];
+  }
+
+  .setting {
+    @apply font-space mb-1.5 flex min-h-11 w-full cursor-pointer items-center justify-between rounded-[7px] border-2 border-[#7D786A] bg-[#FAF8F2] px-2.75 text-[13px] font-semibold has-checked:border-[#423E34] has-checked:bg-[#FFFFFF];
+  }
+
+  .setting-title {
+    @apply text-[#7D786A] peer-checked:text-[#1A1814];
+  }
+
+  .scrollbar {
+    &::-webkit-scrollbar {
+      width: 10px;
+      height: 20px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: transparent;
+      border-radius: 9999px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: #ffc107;
+      border: 2px solid #1a1814;
+      border-radius: 9999px;
+      cursor: pointer;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+      background: #ffc107;
+    }
   }
 }
